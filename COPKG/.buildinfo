@@ -10,6 +10,8 @@
 x86 {
     compiler: vc10-x86;
      
+    uses: x86=@"..\openssl";
+
     targets: { 
         "vstudio\Win32\Release\libssh.dll",
         "vstudio\Win32\Release\libssh.lib",
@@ -31,6 +33,8 @@ x86 {
 x64 {
     compiler: vc10-x64;
      
+    uses: x64=@"..\openssl";
+
     targets: { 
         "vstudio\x64\Release\libssh.dll",
         "vstudio\x64\Release\libssh.lib",

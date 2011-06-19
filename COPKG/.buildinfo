@@ -1,0 +1,50 @@
+#product-info  {
+    product-name: "libssh";
+    version: "0.5";
+    original-source-location: "http://www.libssh.org/files/0.5/libssh-0.5.0.tar.gz";
+    original-source-website: "http://www.libssh.org/";
+    license: "";
+    packager: "Hamish C";
+}
+
+x86 {
+    compiler: vc10-x86;
+     
+    targets: { 
+        "vstudio\Win32\Release\libssh.dll",
+        "vstudio\Win32\Release\libssh.lib",
+    };
+     
+    build-command:@"
+       msbuild /p:Platform=Win32 /p:Configuration=Release vstudio\libssh.sln
+    ";
+     
+    clean-command:@"
+        pushd vstudio
+        del /Q *.sdf *.suo *.user  2>NUL
+        rmdir /Q /S Win32
+        rmdir /Q /S ipch
+        popd
+    ";
+};
+
+x64 {
+    compiler: vc10-x64;
+     
+    targets: { 
+        "vstudio\x64\Release\libssh.dll",
+        "vstudio\x64\Release\libssh.lib",
+    };
+     
+    build-command:@"
+       msbuild /p:Platform=x64 /p:Configuration=Release vstudio\libssh.sln
+    ";
+     
+    clean-command:@"
+        pushd vstudio
+        del /Q *.sdf *.suo *.user  2>NUL
+        rmdir /Q /S x64
+        rmdir /Q /S ipch
+        popd
+    ";
+};
